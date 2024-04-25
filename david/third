@@ -1,0 +1,55 @@
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget,QPushButton, QLabel, QVBoxLayout, QRadioButton, QHBoxLayout, QMessageBox, QButtonGroup
+from random import randint
+
+
+
+
+def generate_clicked():
+    text.setText("Вибрана кнопка під номером " + str(button_group.checkedId()))
+
+app = QApplication([])
+main_win = QWidget()
+main_win.resize(400, 200)
+main_win.setWindowTitle("Мій перший додаток")
+
+but = QPushButton('Згенерувати')
+but.clicked.connect(generate_clicked)
+
+text = QLabel()
+
+btn_answer1 = QRadioButton('1')
+btn_answer2 = QRadioButton('2')
+btn_answer3 = QRadioButton('3')
+layout_main = QVBoxLayout()
+
+btn_answer1.setChecked(True)
+
+button_group = QButtonGroup()
+button_group.addButton(btn_answer1)
+button_group.addButton(btn_answer2)
+button_group.addButton(btn_answer3)
+
+layoutH1 = QVBoxLayout()
+layoutH2 = QVBoxLayout()
+layoutH3 = QVBoxLayout()
+
+
+layoutH1.addWidget(btn_answer1, alignment = Qt.AlignLeft)
+layoutH1.addWidget(btn_answer2, alignment = Qt.AlignLeft)
+layoutH1.addWidget(btn_answer3, alignment = Qt.AlignLeft)
+layoutH2.addWidget(but, alignment = Qt.AlignCenter)
+layoutH3.addWidget(text, alignment = Qt.AlignCenter)
+
+
+
+layout_main.addLayout(layoutH1)
+layout_main.addLayout(layoutH2)
+layout_main.addLayout(layoutH3)
+
+main_win.setLayout(layout_main)
+
+
+
+main_win.show()
+app.exec_()
